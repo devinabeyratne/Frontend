@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>User Registration</title>
+
+    <link rel="stylesheet" href="style.css">
+    
+</head>
+<body>
+    <div class="main">
+       
+            <div class="navbar">
+                <div class="icon">
+                    <h2 class="logo">ABC Labs</h2>
+                </div>
+    
+                <div class="menu">
+                    <ul>
+                        <li><a href="Home.html">HOME</a></li>
+                    <li><a href="Login.html">APPOINTMENT</a></li>
+                    <li><a href="About Us.html">ABOUT </a></li>
+                        <li><a href="Login.html">LOGIN</a></li>
+                        <li><a href="Registration.html">REGISTER</a></li>
+                    </ul>
+                </div>
+    
+            </div> 
+
+        <div class="form">
+            <form id="registrationForm">
+                <h2>SIGN UP HERE</h2>
+                <input type="email" id="email" placeholder="Enter Email Here">
+                <input type="text" id="name" placeholder="Enter Name Here">
+                <input type="password" id="password" placeholder="Enter Password Here">
+                <input type="password" id="confirmPassword" placeholder="Enter Confirm Password Here">
+                <select id="role">
+                    <option value="">Select an option</option>
+                    <option value="option1">USER</option>
+                    
+                  </select>
+                <p id="passwordMatchError" style="color: red;"></p>
+                <input type="hidden" id="role" value="USER"> 
+                <button class="btnn" type="submit"><a>Register</a></button>
+            </form>
+        </div>
+    </div>
+
+    <script src="App.js"></script>
+    
+</body>
+</html>
+

@@ -1,0 +1,164 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>About Page</title>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<style>
+body {
+  font-family: Arial, Helvetica, sans-serif;
+  margin: 0;
+}
+
+html {
+  box-sizing: border-box;
+}
+
+*, *:before, *:after {
+  box-sizing: inherit;
+}
+
+.column {
+  float: left;
+  width: 33.3%;
+  margin-bottom: 16px;
+  padding: 0 8px;
+}
+
+.card {
+  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
+  margin: 8px;
+}
+
+.about-section {
+  padding: 50px;
+  text-align: center;
+  background-color: #3a3d44;
+  color: white;
+}
+
+.container {
+  padding: 0 16px;
+}
+
+.container::after, .row::after {
+  content: "";
+  clear: both;
+  display: table;
+}
+
+.title {
+  color: grey;
+}
+
+.button {
+  border: none;
+  outline: 0;
+  display: inline-block;
+  padding: 8px;
+  color: white;
+  background-color: #000;
+  text-align: center;
+  cursor: pointer;
+  width: 100%;
+}
+
+.button:hover {
+  background-color: #555;
+}
+
+@media screen and (max-width: 650px) {
+  .column {
+    width: 100%;
+    display: block;
+  }
+}
+.h1{
+color: #ff7200;
+}
+</style>
+</head>
+<body>
+
+<div class="about-section">
+  <h1 class="h1" >About ABC Laboratary</h1>
+  <p>Our Lab Appointment System revolutionizes the way ABC Laboratories manages patient appointments and medical test records. Designed to enhance service quality and productivity, our web-based platform offers seamless registration for patients seeking medical tests, along with efficient handling of patient inquiries.</p>
+  <br>
+  <h2 class="h1">Contact Us</h2>
+  <p>Tel  -   +94 777000126, +94 11222456</p>
+  <p>Email  -   abclaboratary@admin.lk</p>
+</div>
+
+<h2 style="text-align:center">Some of Our Medical Tests</h2>
+<div class="row">
+  <div class="column">
+    <div class="card">
+      <img src="3.jpg" alt="Jane" style="width:100%">
+      <div class="container">
+        <h2>CT Scanner</h2>
+        
+        <p>A CT scan is a diagnostic imaging procedure that uses a combination of X-rays and computer technology to produce images of the inside of the body. </p>
+       
+      </div>
+    </div>
+  </div>
+
+  <div class="column">
+    <div class="card">
+      <img src="cbc.jpg" alt="Mike" style="width:100%">
+      <div class="container">
+        <h2>CBC Test</h2>
+        
+        <p>What is a Complete Blood Count? A complete blood count, or CBC, is a blood test that measures many different parts and features of your blood, including: Red blood cells, which carry oxygen from your lungs to the rest of your body.</p>
+        
+       
+      </div>
+    </div>
+  </div>
+  
+  <div class="column">
+    <div class="card">
+      <img src="bmp.png" alt="John" style="width:100%">
+      <div class="container">
+        <h2>BMP Test</h2>
+        <p>The basic metabolic panel (BMP) blood test helps doctors check the body's fluid balance and levels of electrolytes, and see how well the kidneys are working.</p>
+        
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="column">
+    <div class="card">
+      <img src="cmp.webp" alt="John" style="width:100%">
+      <div class="container">
+        <h2>CMP Test</h2>   
+        <p>The comprehensive metabolic panel (CMP) is a blood test that gives doctors information about the body's fluid balance, levels of electrolytes like sodium and potassium, and how well the kidneys and liver are working.</p>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="column">
+    <div class="card">
+      <img src="thy.jpg" alt="John" style="width:100%">
+      <div class="container">
+        <h2>Thyroid Test</h2>
+        <p>What blood tests show thyroid function? Healthcare providers may run several blood tests to determine thyroid function. The two most common tests check your TSH (thyroid-stimulating hormone) and T4 or free T4 (thyroxine) levels. </p>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="column">
+    <div class="card">
+      <img src="urine.avif" alt="John" style="width:100%">
+      <div class="container">
+        <h2>Urine Analysis Test</h2>
+        <p>A urinalysis is a test of your urine. It's used to detect and manage a wide range of disorders, such as urinary tract infections, kidney disease and diabetes.Oct</p>
+      </div>
+    </div>
+  </div>
+</div>
+
+</body>
+</html>

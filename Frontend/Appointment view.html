@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dynamic Table Generation</title>
+    <link rel="stylesheet" href="style3.css">
+</head>
+<body>
+    <h1>All Appoinment Details</h1>
+  
+    <div class="table_responsive">
+        <table>
+            <thead>
+                <tr>
+                    <th>Id</th>
+                    <th>Full Name</th>
+                    <th>Age</th>
+                    <th>Date of Birth</th>
+                    <th>Gender</th>
+                    <th>Job Type</th>
+                    <th>Appointment Date</th>
+                    <th>Appointment Time</th>
+                    <th>E-mail</th>
+                    <th>Phone Number</th>
+                    <th>Action</th>
+                </tr>
+            </thead>
+
+            <tbody id="data">
+                <!-- Table rows will be generated here -->
+            </tbody>
+        </table>
+    </div>
+    <button class="backButton" id="backButton">Back</button>
+    
+    <script>
+   fetch('http://localhost:8080/api/v1/appointment/getAllAppointment')
+    .then(response => {
+        if (!response.ok) {
+            throw new Error('Network response was not ok');
+        }
+        return response.json();
+    })
+    .then(data => {
+        // Check if data is an array
+        if (Array.isArray(data)) {
+            const tableBody = document.getElementById('data');
+            
+            data.forEach(event => {
+                // Check if the event object has the expected properties
+                if (event && event.name && event.age && event.dob && event.sex && event.category && event.date && event.time && event.email && event.phone) {
+                    const row = document.createElement('tr');
+                    row.innerHTML = `
+                    <td>${event.id}</td>
+                        <td>${event.name}</td>
+                        <td>${event.age}</td>
+                        <td>${event.dob}</td>
+                        <td>${event.sex}</td>
+                        <td>${event.category}</td>
+                        <td>${event.date}</td>
+                        <td>${event.time}</td>
+                        <td>${event.email}</td>
+                        <td>${event.phone}</td>
+                        <td>
+                            <span class="action_btn">
+                                
+                                <a href="#" class="delete-button">Remove</a>
+                            </span>
+                        </td>
+                        
+                    `;
+                    tableBody.appendChild(row);
+                } else {
+                    console.error('Unexpected JSON structure for an event:', event);
+                }
+            });
+        } else {
+            console.error('Unexpected JSON structure:', data);
+        }
+    })
+    .catch(error => {
+        console.error('Error fetching data:', error);
+    });
+
+
+    </script>
+</body>
+</html>
+

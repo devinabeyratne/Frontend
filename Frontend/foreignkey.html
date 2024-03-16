@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>Webpage Design</title>
+   
+ <link rel="stylesheet" href="style2.css">
+
+
+
+</head>
+<body>
+
+    <section class="container">
+        <header>Add Test</header>
+        <form  id="registrationForm2" class="form">
+
+          <div class="input-box">
+            <label>name</label>
+            <input type="text" id="name"  placeholder="Enter Test Name" />
+          </div>
+
+          <div class="input-box">
+            <label>Test Price</label>
+            <input type="text" id="price"  placeholder="Enter Test Name" />
+          </div>
+
+          <div class="input-box">
+            <label>description</label>
+            <textarea id="description" placeholder="Enter description here"></textarea>
+          </div>
+
+          <div class="input-box">
+            <label>Assigned Technician</label>
+            <select id="technician_id">
+                <option value="">Select an option</option>
+            </select>
+        </div>
+
+
+          <button type="submit">submit</button>
+          <button id="backButton">Back</button>
+        </form>
+      </section>
+    <script>
+        const registrationForm = document.getElementById('registrationForm2');
+        const passwordInput = document.getElementById('password');
+        const confirmPasswordInput = document.getElementById('confirmPassword');
+        const passwordMatchError = document.getElementById('passwordMatchError');
+        
+
+        const technicianSelect = document.getElementById('technician_id');
+        technicianSelect.addEventListener('change', () => {
+        const technicianId = technicianSelect.value;
+    // Store the technician id in a variable
+});
+
+        // Add an event listener to the registration form
+        registrationForm.addEventListener('submit', async (event) => {
+            event.preventDefault();
+
+            const technician_id = Number(document.getElementById('technician_id').value);
+
+            // ... (your existing validation logic)
+
+            try {const formData = new FormData();
+formData.append('name', name);
+formData.append('price', price);
+formData.append('description', description);
+formData.append('technician_id', technician_id);
+
+const response = await fetch('http://localhost:8080/api/v1/test/createTest', {
+    method: 'POST',
+    headers: {
+        'Content-Type': 'application/json',
+    },
+    body: formData,
+});
+            } catch (error) {
+                console.error('Error:', error);
+                alert('An error occurred while registering user.');
+            }
+        });
+
+        // Fetch technicians data from the server
+        // Fetch technicians data from the server
+async function fetchTechnicians() {
+    try {
+        const response = await fetch('http://localhost:8080/api/v1/technician/getAllTechnician');
+        const technicians = await response.json();
+        displayTechnicians(technicians);
+    } catch (error) {
+        console.error('Error:', error);
+    }
+}
+
+// Display technicians in the select element
+function displayTechnicians(technicians) {
+    technicians.forEach(technician => {
+        const option = document.createElement('option');
+        option.value = technician.id; // Store the technician id in the option value attribute
+        option.textContent = technician.name;
+        technicianSelect.appendChild(option);
+    });
+}
+
+// Call the fetchTechnicians function when the page loads
+fetchTechnicians();
+    </script>
+</body>
+</html>
+
+
+
+<!-- In this code, I added a new function called `fetchTechnicians` that fetches the technicians data from the server using a GET request. The `displayTechnicians` function creates an option element for each technician and appends it to the select element. Finally, I called the `fetchTechnicians` function when the page loads.
+
+Make sure to replace the URL in the fetchTechnicians function with the correct URL to fetch technicians data from your server. -->

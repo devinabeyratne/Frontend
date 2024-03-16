@@ -1,0 +1,236 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>User Registration</title>
+    <link rel="stylesheet" href="style2.css">
+ 
+</head>
+<body>
+    <section class="container">
+        <header>Add Appointment Form</header>
+        <form  id="AppointmentForm" class="form">
+
+          <div class="input-box">
+            <label>Patient Name</label>
+            <input type="text" id="name"  placeholder="Enter your name" />
+          </div>
+
+          <div class="column">
+            <div class="input-box">
+                <label>Age</label>
+                <input type="number" id="age"  placeholder="Enter your age" />
+              </div>
+            <div class="input-box">
+            <label>Birthdate</label>
+              <input type="date" id="dob" placeholder="Enter the DOB"  />
+            </div>
+            <div class="input-box">
+            <label>Sex</label>
+            <div class="select-box">
+                <select id="sex">
+                      <option hidden>Select</option>
+                      <option>Male</option>
+                      <option>Female</option>
+                    </select>
+                    </div>
+                </div>
+          </div>
+
+          <div class="input-box">
+            <label>Your Test Type</label>
+          <div class="select-box">
+        <select id="category">
+              <option hidden>Select the Test Type</option>
+              <option>CT Scanner</option>
+              <option>CBC Test</option>
+              <option>Managemt</option>
+              <option>IT</option>
+              <option>Human Resources</option>
+              <option>Sales</option>
+              <option>Teacher</option>
+             </select>
+          </div>
+          </div>
+          
+      
+         
+          <div class="column">
+            <div class="input-box">
+              <label>Select Appointment Date</label><br>
+            
+              <input type="date" id="date" placeholder="Enter the Date"  />
+            </div>
+            <!-- <div class="input-box">
+             <label>Select Appointment Time</label>
+              <input type="time" id="time" placeholder="Enter Appointment Time"  />
+            </div>
+          </div> -->
+
+          <div class="input-box">
+            <label>Select Appointment Time</label>
+            <div class="select-box">
+                <select id="time">
+                      <option hidden>Select</option>
+                      <option>9.00AM</option>
+                      <option>12.00PM</option>
+                      <option>3.00PM</option>
+                    </select>
+                    </div>
+                </div>
+          </div>
+
+          <div class="input-box">
+            <label>Your E-mail</label>
+            <input type="email" id="email"  placeholder="Enter your Email" />
+          </div>
+
+          <div class="input-box">
+            <label>Your Phone Number</label>
+            <input type="tel" id="phone"  placeholder="Enter your Phone Number" />
+          </div>
+
+         <button type="submit">Submit</button>
+          <button id="backButton">Back</button>
+        </form>
+      </section>
+    
+    
+      <script >
+const AppointmentForm= document.getElementById('AppointmentForm');
+const backButton = document.getElementById('backButton');
+
+backButton.addEventListener('click', () => {
+window.history.back(); // This will go back to the previous page in the browser's history.
+});
+
+
+AppointmentForm.addEventListener('submit', async (event) => {
+    event.preventDefault();
+
+    const name = document.getElementById('name').value;
+    const age= document.getElementById('age').value;
+    const  dob= document.getElementById('dob').value;
+   const sex= document.getElementById('sex').value;
+    const  category= document.getElementById('category').value;
+    const date= document.getElementById('date').value;
+    const  time= document.getElementById('time').value;
+   const email= document.getElementById('email').value;
+    const  phone= document.getElementById('phone').value;
+   
+       
+// Validation
+if (name.trim() === '') {
+alert('Please enter your full name.');
+return;
+}
+if (age.trim() === '') {
+alert('Please enter your age.');
+return;
+}
+
+if (dob.trim() === '') {
+alert('Please select Brithday.');
+return;
+}
+
+if (sex === 'hidden') {
+alert('Please select sex.');
+return;
+}
+
+
+if (category === 'hidden') {
+alert('Please select the job category.');
+return;
+}
+
+
+if (date.trim() === '') {
+alert('Please select a date.');
+return;
+}
+
+if (time.trim() === '') {
+alert('Please select a time.');
+return;
+}
+if (email.trim() === '') {
+alert('Please enter your E-mail.');
+return;
+}
+if (phone.trim() === '') {
+alert('Please enter your phone number.');
+return;
+}
+
+    try {
+                const response = await fetch('http://localhost:8080/api/v1/appointment/CreateAppointment', {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json',
+                    },
+                    body: JSON.stringify({
+                        name,
+                        age,
+                        dob,
+                        sex,
+                        category,
+                        date,
+                        time,
+                        email,
+                        phone,
+                       
+    }),
+                });
+
+                if (response.ok) {
+                    alert('Schedule added successfully.');
+                } else {
+                    alert('Error Schedule.');
+                }
+            } catch (error) {
+                console.error('Error:', error);
+               
+            }
+        });
+
+        // function deleteSchedule(searchId) {
+        //     // Send a DELETE request to delete the schedule by ID
+        //     fetch(`http://localhost:8080/api/v1/deleteAppointment/${searchId}`, {
+        //         method: 'DELETE'
+        //     })
+        //     .then(response => response.json())
+        //     .then(data => {
+        //         if (data.message === 'Deleted successfully') {
+        //             alert('Schedule deleted successfully.');
+        //             // Remove the row from the table on successful delete
+        //             const rowToDelete = document.querySelector(`#data td:first-child:contains('${searchId}')`).closest('tr');
+        //             rowToDelete.remove();
+                
+        //         } else {
+        //             alert('Schedule deleted successfully.');
+        //         }
+        //     })
+        //     .catch(error => {
+        //         console.error('Error deleting schedule:', error);
+        //     });
+        // }
+
+        // // Add an event listener to the "Back" button to navigate back
+        // document.getElementById('backButton').addEventListener('click', () => {
+        //     window.history.back(); // This will go back to the previous page in the browser's history.
+        // });
+
+
+
+
+      </script>
+        
+             
+        
+    
+    
+    
+   
+</body>
+</html>

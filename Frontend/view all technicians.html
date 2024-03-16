@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dynamic Table Generation</title>
+    <link rel="stylesheet" href="style3.css">
+</head>
+<body>
+    <h1>All Technician Details</h1>
+  
+    <div class="table_responsive">
+        <table>
+            <thead>
+                <tr>
+                    <th>email</th>
+                    <th>name</th>
+                    <th>specialisation</th>
+                </tr>
+            </thead>
+
+            <tbody id="data">
+                <!-- Table rows will be generated here -->
+            </tbody>
+        </table>
+    </div>
+    <button class="backButton" id="backButton">Back</button>
+    
+    <script>
+   fetch('http://localhost:8080/api/v1/technician/getAllTechnician')
+    .then(response => {
+        if (!response.ok) {
+            throw new Error('Network response was not ok');
+        }
+        return response.json();
+    })
+    .then(data => {
+        // Check if data is an array
+        if (Array.isArray(data)) {
+            const tableBody = document.getElementById('data');
+            
+            data.forEach(event => {
+                // Check if the event object has the expected properties
+                if (event && event.email && event.name && event.specialisation) {
+                    const row = document.createElement('tr');
+                    row.innerHTML = `
+                        <td>${event.email}</td>
+                        <td>${event.name}</td>
+                        <td>${event.specialisation}</td>
+                        
+                    `;
+                    tableBody.appendChild(row);
+                } else {
+                    console.error('Unexpected JSON structure for an event:', event);
+                }
+            });
+        } else {
+            console.error('Unexpected JSON structure:', data);
+        }
+    })
+    .catch(error => {
+        console.error('Error fetching data:', error);
+    });
+
+
+    </script>
+</body>
+</html>
+

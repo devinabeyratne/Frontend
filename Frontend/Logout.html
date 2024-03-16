@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Logout Page</title>
+</head>
+<body>
+    <h1>Logout Page</h1>
+    <!-- Replace the button with an anchor -->
+    <a id="logoutLink" href="#">Logout</a>
+
+    <script>
+        // Add a click event listener to the anchor
+        document.getElementById("logoutLink").addEventListener("click", function (event) {
+            event.preventDefault(); // Prevent the default behavior of anchor (following the link)
+
+            // Send a POST request to the backend's logout endpoint
+            fetch("http://localhost:8080/api/v1/logout", {
+                method: "POST",
+                credentials: "same-origin", // Include credentials (cookies) in the request
+            })
+            .then(function (response) {
+                if (response.ok) {
+                    // Redirect to a login page or perform any other actions upon successful logout
+                    window.location.href = "Login.html"; // Redirect to the login page
+                } else {
+                    console.error("Logout failed");
+                }
+            })
+            .catch(function (error) {
+                console.error("Error during logout:", error);
+            });
+        });
+    </script>
+</body>
+</html>
+

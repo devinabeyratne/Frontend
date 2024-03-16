@@ -1,0 +1,148 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>Webpage Design</title>
+   
+ <link rel="stylesheet" href="style2.css">
+
+
+
+</head>
+<body>
+
+    <section class="container">
+        <header>Add Test</header>
+        <form  id="registrationForm2" class="form">
+
+          <div class="input-box">
+            <label>name</label>
+            <input type="text" id="name"  placeholder="Enter Test Name" />
+          </div>
+
+          <div class="input-box">
+            <label>Test Price</label>
+            <input type="text" id="price"  placeholder="Enter Test Name" />
+          </div>
+
+          <div class="input-box">
+            <label>description</label>
+            <textarea id="description" placeholder="Enter description here"></textarea>
+          </div>
+
+          <div class="input-box">
+            <label>Assign Technician</label>
+            
+          <select id="technician_name">
+            
+            <option value="">Select an option</option>
+            <option value="Mark">Mark</option>
+            <option value="Peter">Peter</option>
+            
+          </select>
+        </div>
+
+          <button type="submit">submit</button>
+          <button id="backButton">Back</button>
+        </form>
+      </section>
+
+      <script >
+const registrationForm = document.getElementById('registrationForm2');
+const passwordInput = document.getElementById('password');
+const confirmPasswordInput = document.getElementById('confirmPassword');
+const passwordMatchError = document.getElementById('passwordMatchError');
+
+
+// Add an event listener to the registration form
+registrationForm.addEventListener('submit', async (event) => {
+    event.preventDefault();
+
+    function validateName(name) {
+        return name.trim() !== '';
+    }
+
+    function validateEmail(email) {
+        // Add your email validation logic here
+        return /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email);
+    }
+
+
+    // function validatePassword(password) {
+    //     return password.trim() !== '';
+    // }
+    // function validatePassword() {
+    //     const password = passwordInput.value;
+    //     const confirmPassword = confirmPasswordInput.value;
+    
+    //     if (password !== confirmPassword) {
+    //         passwordMatchError.textContent = 'Passwords do not match';
+    //         return false;
+    //     } else {
+    //         passwordMatchError.textContent = '';
+    //         return true;
+    //     }
+    // }
+
+
+    // Get values from form fields
+    const name = document.getElementById('name').value;
+    const price = document.getElementById('price').value;
+    const description = document.getElementById('description').value;
+    const technician_name = document.getElementById('technician_name').value;
+    
+    
+
+
+    
+    if (!validateName(name)) {
+        alert('Please Enter Your Name.');
+        return;
+    }
+    
+// if (!validateEmail(email)) {
+//     alert('Please enter a valid E-mail Address.');
+//     return;
+// }
+    //  if (!validatePassword(password)) {
+    //      alert('Please Enter Your Password.');
+    //      return;
+    //  }
+    //  if (!validatePassword()) {
+    //      return;
+    //  }
+
+
+    
+    try {
+        const response = await fetch('http://localhost:8080/api/v1/tests/createTests', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json',
+            },
+            body: JSON.stringify({
+                name,
+                price,
+                description,
+                technician_name,
+                 // Include the role in the JSON data
+            }),
+        });
+
+        if (response.ok) {
+            alert('User registered successfully.');
+           
+        } else {
+            alert('Error registering user.');
+        }
+    } catch (error) {
+        console.error('Error:', error);
+        alert('An error occurred while registering user.');
+    }
+});
+
+
+
+      </script>
+
+</body>
+</html>

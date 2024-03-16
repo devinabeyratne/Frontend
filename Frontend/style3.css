@@ -1,0 +1,167 @@
+@import url('https://fonts.googleapis.com/css2?family=Roboto:wght@300;500&display=swap');
+
+* {
+    box-sizing: border-box;
+}
+h1{
+    color: #00bcd4;
+    text-align: center;
+    padding: auto;
+
+}
+
+.search{
+    width: 330px;
+   margin-bottom: 20px;
+    margin-left: 300px;
+
+}
+
+.srch{
+    font-family: 'Times New Roman';
+    width: 200px;
+    height: 40px;
+    background: transparent;
+    border: 1px solid #00bcd4;
+    margin-top: 13px;
+    color: #000000;
+    border-right: none;
+    font-size: 16px;
+    float: left;
+    padding: 10px;
+    border-bottom-left-radius: 5px;
+    border-top-left-radius: 5px;
+
+}
+
+.btn{
+    width: 100px;
+    height: 40px;
+    background: #00bcd4;
+    border: 2px solid #00191d;
+    margin-top: 13px;
+    color: #fff;
+    font-size: 15px;
+    border-bottom-right-radius: 5px;
+    border-bottom-right-radius: 5px;
+    transition: 0.2s ease;
+    cursor: pointer;
+}
+.btn:hover{
+    color: #000;
+}
+
+.btn:focus{
+    outline: none;
+}
+
+.srch:focus{
+    outline: none;
+}
+
+body>div{
+
+    display: flex;
+    font-family: 'Roboto', sans-serif;
+    
+}
+
+.table_responsive {
+    max-width: 1000px;
+    border: 1px solid #00bcd4;
+    background-color: #efefef33;
+    padding: 25px;
+    overflow: auto;
+
+    border-radius: 4px;
+    margin-left:170px
+}
+
+table {
+    width: 500%;
+    font-size: 13px;
+    color: #444;
+    white-space: nowrap;
+    border-collapse: collapse;
+   
+
+    
+}
+
+table>thead {
+    background-color: #00bcd4;
+    color: #fff;
+}
+
+table>thead th {
+    padding: 15px;
+}
+
+table th,
+table td {
+    border: 1px solid #00000017;
+    padding: 10px 15px;
+}
+
+
+
+
+.action_btn {
+    display: flex;
+    justify-content: center;
+    gap: 10px;
+}
+
+.action_btn>a {
+    text-decoration: none;
+    color: #444;
+    background: #fff;
+    border: 1px solid;
+    display: inline-block;
+    padding: 7px 20px;
+    font-weight: bold;
+    border-radius: 3px;
+    transition: 0.3s ease-in-out;
+}
+
+.action_btn>a:nth-child(1) {
+    border-color: #26a69a;
+}
+
+.action_btn>a:nth-child(2) {
+    border-color: orange;
+}
+
+.action_btn>a:hover {
+    box-shadow: 0 3px 8px #0003;
+}
+
+
+table>tbody>tr {
+    background-color: #fff;
+    transition: 0.3s ease-in-out;
+}
+
+
+table>tbody>tr:nth-child(even) {
+    background-color: rgb(238, 238, 238);
+}
+
+table>tbody>tr:hover{
+    filter: drop-shadow(0px 2px 6px #0002);
+}
+.backButton{
+    height: 55px;
+    width: 10%;
+    color: #fff;
+    font-size: 1rem;
+    font-weight: 40;
+    margin-top: 30px;
+    border: none;
+    cursor: pointer;
+    transition: all 0.2s ease;
+    background:  #00bcd4;
+  }
+  .backButton:hover {
+    background: rgb(88, 56, 250);
+  }

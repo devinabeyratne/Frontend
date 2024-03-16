@@ -1,0 +1,139 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>User Registration</title>
+    <link rel="stylesheet" href="style2.css">
+ 
+</head>
+<body>
+    <section class="container">
+        <header>Add Report Form</header>
+        <form  id="AppointmentForm" class="form">
+
+          <div class="input-box">
+            <label>Patient Name</label>
+            <input type="text" id="patient_name"  placeholder="Enter patient name" />
+          </div>
+
+          
+            <div class="input-box">
+            <label>Test Name</label>
+            <div class="select-box">
+                <select id="test_name">
+                      <option hidden>Select</option>
+                      <option>CT Scanner</option>
+                      <option>CBC Test</option>
+                    </select>
+                    </div>
+                </div>
+          </div>
+
+          <div class="input-box">
+            <label>Doctor Name</label>
+            <input type="text" id="doctor_name"  placeholder="Enter doctor name" />
+          </div>
+
+          <div class="input-box">
+            <label>Report Result</label>
+            <textarea id="result" placeholder="Enter Report Result"></textarea>
+          </div>
+
+
+          <div class="column">
+            <div class="input-box">
+              <label>Select Test Date</label><br>
+            
+              <input type="date" id="date" placeholder="Enter the date"  />
+            </div>
+            </div>
+            
+         <button type="submit">Submit</button>
+          <button id="backButton">Back</button>
+        </form>
+      </section>
+    
+    
+      <script >
+const AppointmentForm= document.getElementById('AppointmentForm');
+const backButton = document.getElementById('backButton');
+
+backButton.addEventListener('click', () => {
+window.history.back(); // This will go back to the previous page in the browser's history.
+});
+
+
+AppointmentForm.addEventListener('submit', async (event) => {
+    event.preventDefault();
+
+    const patient_name = document.getElementById('patient_name').value;
+    const test_name= document.getElementById('test_name').value;
+    const doctor_name= document.getElementById('doctor_name').value;
+    const  result= document.getElementById('result').value;
+   const date= document.getElementById('date').value;
+    
+   
+       
+// Validation
+if (patient_name.trim() === '') {
+alert('Please enter patient name.');
+return;
+}
+if (test_name.trim() === '') {
+alert('Please select test name.');
+return;
+}
+if (doctor_name.trim() === '') {
+alert('Please enter doctor name.');
+return;
+}
+
+if (result.trim() === '') {
+alert('Please enter test result.');
+return;
+}
+
+if (date === 'hidden') {
+alert('Please select the date.');
+return;
+}
+
+
+    try {
+                const response = await fetch('http://localhost:8080/api/v1/report/createReport', {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json',
+                    },
+                    body: JSON.stringify({
+
+                        patient_name,
+                        test_name,
+                        doctor_name,
+                        result,
+                        date,
+                       
+    }),
+                });
+
+                if (response.ok) {
+                    alert('Report added successfully.');
+                } else {
+                    alert('Error Schedule.');
+                }
+            } catch (error) {
+                console.error('Error:', error);
+               
+            }
+        });
+
+    </script>
+        
+             
+        
+    
+    
+    
+   
+    </body>
+    </html>
+    

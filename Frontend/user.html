@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>User Page</title>
+    <link rel="stylesheet" href="style.css">
+   
+
+</head>
+<body>
+    <div class="main2">
+        <div class="navbar2">
+            <div class="icon2">
+                <h2 class="logo2">ABC Labs</h2>
+            
+        </div> 
+       
+    </div>
+
+    <h3>Welcome, User</h3>
+	 <div class="sidenav2">
+         
+            <a href="view all test.html">View Tests</a>
+            <a href="Add Appoinment.html">Add Appointment</a>
+            <a href="Appointment view.html">View Appointment</a>
+            <a href="View Report.html">View Test Report</a>
+            <a id="logoutLink" href="logout.html">Logout</a>
+		 
+		 
+        </div>
+  
+    
+        <script>
+            // Add a click event listener to the anchor
+            document.getElementById("logoutLink").addEventListener("click", function (event) {
+                event.preventDefault(); // Prevent the default behavior of anchor (following the link)
+    
+                // Display a confirmation dialog
+                const confirmLogout = window.confirm("Are you sure you want to logout?");
+                
+                if (confirmLogout) {
+                    // Send a POST request to the backend's logout endpoint
+                    fetch("http://localhost:8080/api/v1/logout", {
+                        method: "POST",
+                        credentials: "same-origin", // Include credentials (cookies) in the request
+                    })
+                    .then(function (response) {
+                        if (response.ok) {
+                            // Redirect to a login page or perform any other actions upon successful logout
+                            window.location.href = "Login.html"; // Redirect to the login page
+                        } else {
+                            console.error("Logout failed");
+                        }
+                    })
+                    .catch(function (error) {
+                        console.error("Error during logout:", error);
+                    });
+                }
+            });
+            </script>
+
+</body>
+</html>
