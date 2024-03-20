@@ -56,30 +56,88 @@
 
         // Add an event listener to the registration form
         registrationForm.addEventListener('submit', async (event) => {
-            event.preventDefault();
+    event.preventDefault();
 
-            const technician_id = Number(document.getElementById('technician_id').value);
+    function validateName(name) {
+        return name.trim() !== '';
+    }
 
-            // ... (your existing validation logic)
+    function validateEmail(email) {
+        // Add your email validation logic here
+        return /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email);
+    }
 
-            try {const formData = new FormData();
-formData.append('name', name);
-formData.append('price', price);
-formData.append('description', description);
-formData.append('technician_id', technician_id);
 
-const response = await fetch('http://localhost:8080/api/v1/test/createTest', {
-    method: 'POST',
-    headers: {
-        'Content-Type': 'application/json',
-    },
-    body: formData,
-});
-            } catch (error) {
-                console.error('Error:', error);
-                alert('An error occurred while registering user.');
-            }
+    // function validatePassword(password) {
+    //     return password.trim() !== '';
+    // }
+    // function validatePassword() {
+    //     const password = passwordInput.value;
+    //     const confirmPassword = confirmPasswordInput.value;
+    
+    //     if (password !== confirmPassword) {
+    //         passwordMatchError.textContent = 'Passwords do not match';
+    //         return false;
+    //     } else {
+    //         passwordMatchError.textContent = '';
+    //         return true;
+    //     }
+    // }
+
+
+    // Get values from form fields
+    const email = document.getElementById('email').value;
+    const name = document.getElementById('name').value;
+    const specialisation = document.getElementById('specialisation').value;
+    
+
+
+    
+    if (!validateName(name)) {
+        alert('Please Enter Your Name.');
+        return;
+    }
+    
+if (!validateEmail(email)) {
+    alert('Please enter a valid E-mail Address.');
+    return;
+}
+    //  if (!validatePassword(password)) {
+    //      alert('Please Enter Your Password.');
+    //      return;
+    //  }
+    //  if (!validatePassword()) {
+    //      return;
+    //  }
+
+
+    
+    try {
+        const response = await fetch('http://localhost:8080/api/v1/test/createTest', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json',
+            },
+            body: JSON.stringify({
+                name,
+                price,
+                description,
+                technician_id
+                 // Include the role in the JSON data
+            }),
         });
+
+        if (response.ok) {
+            alert('User registered successfully.');
+           
+        } else {
+            alert('Error registering user.');
+        }
+    } catch (error) {
+        console.error('Error:', error);
+        alert('An error occurred while registering user.');
+    }
+});
 
         // Fetch technicians data from the server
         // Fetch technicians data from the server
@@ -98,7 +156,7 @@ function displayTechnicians(technicians) {
     technicians.forEach(technician => {
         const option = document.createElement('option');
         option.value = technician.id; // Store the technician id in the option value attribute
-        option.textContent = technician.name;
+        option.textContent = technician.id;
         technicianSelect.appendChild(option);
     });
 }

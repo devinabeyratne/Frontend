@@ -67,14 +67,14 @@ body>div{
 }
 
 .table_responsive {
-    max-width: 1000px;
+    max-width: 2000px;
     border: 1px solid #00bcd4;
     background-color: #efefef33;
     padding: 25px;
     overflow: auto;
 
     border-radius: 4px;
-    margin-left:170px
+    margin-left:100px
 }
 
 table {

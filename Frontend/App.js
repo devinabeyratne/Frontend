@@ -22,7 +22,6 @@ registrationForm.addEventListener('submit', async (event) => {
         return /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email);
     }
 
-
     function validatePassword(password) {
         return password.trim() !== '';
     }
@@ -86,7 +85,7 @@ if (!validateEmail(email)) {
 
         if (response.ok) {
             alert('User registered successfully.');
-            window.location.href = 'Login.html';
+            // window.location.href = 'Login.html';
         } else {
             alert('Error registering user.');
         }
@@ -159,7 +158,7 @@ function login() {
             event.preventDefault(); // Prevent the default behavior of anchor (following the link)
 
             // Send a POST request to the backend's logout endpoint
-            fetch("http://localhost:8086/api/v1/logout", {
+            fetch("http://localhost:8080/api/v1/logout", {
                 method: "POST",
                 credentials: "same-origin", // Include credentials (cookies) in the request
             })
